@@ -27,7 +27,7 @@ Then, run
 
 View the results in the `gen/sdk` folders. For example,
 `gen/sdk/allOf/typescript-angular`
-shows the output for using the `allOf` construct for schema compsition,
+shows the output for using the `allOf` construct for schema composition,
 applied to the `typescript-angular` language target.
 
 The script was built and tested on Macos but should run fine on Linux or
