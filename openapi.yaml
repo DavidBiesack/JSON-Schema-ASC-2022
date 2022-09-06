@@ -1,0 +1,104 @@
+# @format
+
+openapi: 3.0.0
+info:
+  title: ASC Sample
+  description: Sample API for ASC 2022
+    Demonstrate the effect of JSON Schema structure on code generation.
+  version: 0.0.1
+  contact:
+    email: David.Biesack@gmail.com
+
+servers:
+  - url: /sample
+
+tags:
+  - name: Geometry
+    description: Geometry
+paths:
+  /point:
+    get:
+      summary: Get a point
+      description: Get a point
+      operationId: getPoint
+      tags:
+        - Geometry
+      responses:
+        '200':
+          description: OK.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/point'
+
+components:
+  schemas:
+    point:
+      title: A Point
+      description: A Point in 2-D space
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/cartesianPoint'
+        - $ref: '#/components/schemas/polarPoint'
+    cartesianPoint:
+      title: A cartesian point
+      description: A cartesian point in 2-D space
+      type: object
+      required:
+        - x
+        - y
+      properties:
+        x:
+          type: number
+          format: double
+        y:
+          type: number
+          format: double
+    polarPoint:
+      title: A point in Polar 2-D space
+      description: A point in 2-D space, polar coordinates
+      type: object
+      required:
+        - rho
+        - theta
+      properties:
+        rho:
+          type: number
+          format: double
+        theta:
+          type: number
+          format: double
+
+    # Tip: use a `type` property to identify the run-time type
+    # with an enum
+    point2DWithInlineType:
+      title: A Point
+      description: A Point in 2-D space
+      type: object
+      properties:
+        type:
+          type: string
+          enum: [ cartesian, polar ]
+        cartesian:
+          $ref: '#/components/schemas/cartesianPoint'
+        polar:
+          $ref: '#/components/schemas/polarPoint'
+
+    # Tip: Avoid unnamed (anonymous) object schemas
+    point2D:
+      title: A Point
+      description: A Point in 2-D space
+      type: object
+      required: [ type ]
+      properties:
+        type:
+          $ref: '#/components/schemas/pointType'
+        cartesian:
+          $ref: '#/components/schemas/cartesianPoint'
+        polar:
+          $ref: '#/components/schemas/polarPoint'
+    pointType:
+      title: Point Type
+      description: The type of a geometric point in 2D space.
+      type: string
+      enum: [ cartesian, polar ]
