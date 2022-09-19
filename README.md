@@ -18,7 +18,7 @@ Below are some additional resources cited in the talk.
 
 ## Presentation
 
-Download the Powerpoint .ppm file here.
+Download the Powerpoint .ppm file [here](https://github.com/DavidBiesack/JSON-Schema-ASC-2022/blob/main/Wielding%20the%20Double-Edged%20Sword%20of%20JSON%20Schema.pptm).
 This file has macros enabled for slide #35. If you wish to view the
 presentation as recorded and are comfortable enabling macros, please do
 so.
