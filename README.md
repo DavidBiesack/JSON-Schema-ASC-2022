@@ -23,7 +23,7 @@ This file has macros enabled for slide #35. If you wish to view the
 presentation as recorded and are comfortable enabling macros, please do
 so.
 If no, do not enable macros, but slide #35 will not be interactive.
-The content as recorded presented is in the previous 6 hidden slides.
+The slide #35 content as recorded presented is in the previous 6 hidden slides.
 
 ## codegen.sh
 
