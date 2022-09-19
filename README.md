@@ -1,6 +1,29 @@
 # JSON-Schema-ASC-2022
 
-Material for David Biesack's 2022 API Specifications Conference presentation, _Wielding the Double-Edged Sword of JSON Schema_.
+Material for David Biesack's 2022 API Specifications Conference
+presentation,
+[_Wielding the Double-Edged Sword of JSON Schema_](https://sched.co/1B6n2).
+
+## Resources
+
+Below are some additional resources cited in the talk.
+
+* Ben Hutton: Two ASC'22 talks (?)
+* Jason Desrosiers: ASC'22 on [JSON Schema vocabularies](https://sched.co/1AIqb)
+* [github.com/json-schema-org/vocab-idl](https://github.com/json-schema-org/vocab-idl)
+* [github.com/terryweiss/jsm](https://github.com/terryweiss/jsm)
+* [github.com/notEthan/jsi](https://github.com/notEthan/jsi)
+* [github.com/bcherny/json-schema-to-typescript](https://github.com/bcherny/json-schema-to-typescript)
+* [github.com/DavidBiesack/JSON-Schema-ASC-2022](https://github.com/DavidBiesack/JSON-Schema-ASC-2022)
+
+## Presentation
+
+Download the Powerpoint .ppm file here.
+This file has macros enabled for slide #35. If you wish to view the
+presentation as recorded and are comfortable enabling macros, please do
+so.
+If no, do not enable macros, but slide #35 will not be interactive.
+The content as recorded presented is in the previous 6 hidden slides.
 
 ## codegen.sh
 
@@ -17,6 +40,12 @@ or if you have Node.js, you can us
 
 ```bash
 npm i -g swagger-codegen-cli
+```
+
+**Note**: `swagger-codegen` requires a Java Runtime Environment, such as Java 18, in your PATH:
+
+```bash
+brew install java
 ```
 
 Then, run
