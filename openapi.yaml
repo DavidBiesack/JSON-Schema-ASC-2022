@@ -32,15 +32,17 @@ paths:
                 $ref: '#/components/schemas/point'
 
 components:
+
   schemas:
+
     point:
       title: A Point
       description: A Point in 2-D space
       type: object
       allOf:
-        - $ref: '#/components/schemas/cartesianPoint'
-        - $ref: '#/components/schemas/polarPoint'
-    cartesianPoint:
+        - $ref: '#/components/schemas/cartesianPoint2D'
+        - $ref: '#/components/schemas/polarPoint2D'
+    cartesianPoint2D:
       title: A cartesian point
       description: A cartesian point in 2-D space
       type: object
@@ -54,7 +56,7 @@ components:
         y:
           type: number
           format: double
-    polarPoint:
+    polarPoint2D:
       title: A point in Polar 2-D space
       description: A point in 2-D space, polar coordinates
       type: object
@@ -80,11 +82,11 @@ components:
           type: string
           enum: [ cartesian, polar ]
         cartesian:
-          $ref: '#/components/schemas/cartesianPoint'
+          $ref: '#/components/schemas/cartesianPoint2D'
         polar:
-          $ref: '#/components/schemas/polarPoint'
+          $ref: '#/components/schemas/polarPoint2D'
 
-    # Tip: Avoid unnamed (anonymous) object schemas
+    # Tip: Avoid inline (unnamed, anonymous) object or enum schemas as used in point2DWithInlineType
     point2D:
       title: A Point
       description: A Point in 2-D space
@@ -94,11 +96,58 @@ components:
         type:
           $ref: '#/components/schemas/pointType'
         cartesian:
-          $ref: '#/components/schemas/cartesianPoint'
+          $ref: '#/components/schemas/cartesianPoint2D'
         polar:
-          $ref: '#/components/schemas/polarPoint'
+          $ref: '#/components/schemas/polarPoint2D'
     pointType:
       title: Point Type
       description: The type of a geometric point in 2D space.
       type: string
       enum: [ cartesian, polar ]
+
+    point3D:
+      title: 3D Point
+      description: A point in 3-D space, either cartesian or polar coordinates.
+      type: object
+      required: [ type ]
+      properties:
+        type:
+          $ref: '#/components/schemas/pointType'
+      oneOf:
+        - $ref: '#/components/schemas/cartesianPoint3D'
+        - $ref: '#/components/schemas/polarPoint3D'
+      discriminator:
+          propertyName: type
+          mapping:
+            cartesian: '#/components/schemas/cartesianPoint3D'
+            polar: '#/components/schemas/polarPoint3D'
+
+    cartesianPoint3D:
+      title: Cartesian coordinate point in 3-D space
+      description: Cartesian coordinate point in 3-D space.
+        Used when a `point3D` object has `type` of `cartesian`.
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/point3D'
+        - $ref: '#/components/schemas/cartesianPoint2D'
+        - type: object
+          required: [ z ]
+          properties:
+            z:
+              type: number
+              format: double
+
+    polarPoint3D:
+      title: Polar coordinate point in 3-D space
+      description: Polar coordinate point in 3-D space.
+        Used when a `point3D` object has `type` of `polar`.
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/point3D'
+        - $ref: '#/components/schemas/polarPoint2D'
+        - type: object
+          required: [ phi ]
+          properties:
+            phi:
+              type: number
+              format: double

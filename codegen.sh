@@ -13,7 +13,14 @@ function codegen {
 
 test -d gen/sdk && rm -rf gen/sdk
 
-for structure in allOf oneOf anyOf
+if command -v spectral
+then
+    spectral lint -r .spectral.yaml openapi.yaml
+    rc=$?
+    if [[ $rc -gt 0 ]]; then exit $?; fi
+fi
+
+for structure in allOf # oneOf anyOf
 do
     sed s/allOf/$structure/ < openapi.yaml | js-yaml > openapi.json
     codegen typescript-angular ts     model
